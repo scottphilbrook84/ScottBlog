@@ -5,7 +5,7 @@ namespace ScottModel.Models
 {
     public class BloggingDbContext : DbContext
     {
-        
+         
         
     }
     
