@@ -1,9 +1,9 @@
 
 namespace ScottBlog.Models
 {
-    public class BlogId
+    public class Blog
  {
-        public int Id { get; set; }
+        public int BlogId { get; set; }
         public string Url { get; set; }   
     }        
 }
