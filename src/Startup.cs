@@ -41,12 +41,13 @@ namespace ScottBlog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=ScottBlog;Trusted_Connection=True;";
+            
             services.AddEntityFramework()
-                .AddSqlite()
-                .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlite(Configuration["Data:DefaultConnection:ConnectionString"]));
-
+                    .AddSqlServer()
+                    .AddDbContext<BloggingDbContext>(options => options.UseSqlServer(connection));
+                    
+           
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
