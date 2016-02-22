@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ScottBlog.Models;
 using ScottBlog.Services;
+using ScottModel.Models;
 
 namespace ScottBlog
 {
@@ -48,9 +49,9 @@ namespace ScottBlog
                     .AddDbContext<BloggingDbContext>(options => options.UseSqlServer(connection));
                     
            
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
 
             services.AddMvc();
 
@@ -74,17 +75,7 @@ namespace ScottBlog
             {
                 app.UseExceptionHandler("/Home/Error");
 
-                // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
-                try
-                {
-                    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
-                        .CreateScope())
-                    {
-                        serviceScope.ServiceProvider.GetService<ApplicationDbContext>()
-                             .Database.Migrate();
-                    }
-                }
-                catch { }
+       
             }
 
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
