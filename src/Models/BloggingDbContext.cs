@@ -16,6 +16,8 @@ namespace ScottModel.Models
                 .IsRequired();
 
         }
+        
+        
     }
 
 }

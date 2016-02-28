@@ -1,0 +1,27 @@
+@model IEnumerable<ScottBlog.Models.Blog>
+    
+@ {
+    ViewBag.Title = "Blogs";
+}
+
+<p>
+   <a asp-asp-controller="Blogs" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>URL</th>
+    </tr>
+    @foreach {var item in model}
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogID)
+            </td>
+            <td>
+                  @Html.DisplayFor(modelItem => item.URL)
+            </td>
+        </tr>
+    }
+</table>

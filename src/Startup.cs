@@ -33,7 +33,6 @@ namespace ScottBlog
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-            Configuration["Data:DefaultConnection:ConnectionString"] = $@"Data Source={appEnv.ApplicationBasePath}/ScottBlog.db";
 
         }
 
@@ -47,17 +46,8 @@ namespace ScottBlog
             services.AddEntityFramework()
                     .AddSqlServer()
                     .AddDbContext<BloggingDbContext>(options => options.UseSqlServer(connection));
-                    
-           
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
 
             services.AddMvc();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,8 +71,6 @@ namespace ScottBlog
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
 
             app.UseStaticFiles();
-
-            app.UseIdentity();
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
