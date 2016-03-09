@@ -15,7 +15,7 @@ namespace ScottBlog.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Scott's Blog. Maybe.";
 
             return View();
         }
