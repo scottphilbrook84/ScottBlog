@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ScottBlog.Models;
-using ScottBlog.Services;
 using ScottModel.Models;
 
 namespace ScottBlog
@@ -46,6 +45,11 @@ namespace ScottBlog
             services.AddEntityFramework()
                     .AddSqlServer()
                     .AddDbContext<BloggingDbContext>(options => options.UseSqlServer(connection));
+                    
+            // Add Identity services to the services container.
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<BloggingDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddMvc();
         }
@@ -58,6 +62,7 @@ namespace ScottBlog
 
             if (env.IsDevelopment())
             {
+                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
@@ -68,9 +73,8 @@ namespace ScottBlog
        
             }
 
-            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
-
             app.UseStaticFiles();
+            app.UseIdentity();
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
