@@ -8,9 +8,18 @@ namespace ScottBlog.Controllers
 {
     public class HomeController : Controller
     {
+        
+       private BloggingDbContext _context;
+        
+        public HomeController(BloggingDbContext context)
+        {
+            _context = context;
+            
+        }
+        
         public IActionResult Index()
         {
-            return View();
+            return View(_context.Blogs.ToList());
         }
 
         public IActionResult About()
