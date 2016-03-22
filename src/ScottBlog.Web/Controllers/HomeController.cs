@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 
+using ScottModel.Models;
+using System.Linq;
+
 namespace ScottBlog.Controllers
 {
     public class HomeController : Controller
