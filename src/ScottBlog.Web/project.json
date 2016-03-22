@@ -5,7 +5,7 @@
     "emitEntryPoint": true
   },
   "tooling": {
-    "defaultNamespace": "ScottBlog"
+    "defaultNamespace": "ScottBlog.Web"
   },
 
   "dependencies": {
